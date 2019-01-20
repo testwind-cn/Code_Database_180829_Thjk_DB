@@ -1,0 +1,32 @@
+
+ ----------------------资产的生产环境------------------------------------
+ 连接名称	prod-db-from-zc-db2-tlbdbonl-fmp
+ 主机名称	172.31.64.82
+ 数据库名称	tlbdbonl
+ 端口号		65000
+ 用户名		readonly
+ 密码		readonly2018
+
+
+ 连接名称	prod-db-from-zc-db2-tlbploan-posl
+ 主机名称	172.31.64.82
+ 数据库名称	tlbploan
+ 端口号		65000
+ 用户名		readonly
+ 密码		readonly2018
+
+ 连接名称	prod-db-from-zc-mysql
+ 主机名称	172.31.64.115
+ 数据库名称	loan
+ 端口号		3306
+ 用户名		pub_query
+ 密码		Pub_query123
+
+
+ ----------------------保理的生产环境--------------------------------------
+ 连接名称 	prod-db-from-bl-mysql (prd-db-mysql03),端口21/22 (SSH端口)，3306(DB端口)
+ 主机名称	172.31.132.63
+ 数据库名称	goodboss
+ 端口号		3306
+ 用户名		readonly
+ 密码		Thblreadonly2017ZAQ!
