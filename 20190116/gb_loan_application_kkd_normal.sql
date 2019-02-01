@@ -86,7 +86,7 @@ LEFT JOIN
 
 
 LEFT JOIN
-	( SELECT db_no, max(overdue_days) as max_overdue_days from s6700 GROUP BY db_no )
+	( SELECT db_no, max(overdue_days) as max_overdue_days from s6700 where data_dt < "2019-1-1 0:00:00" GROUP BY db_no  )
 	as b_days
 	on gb_loan_application_kkd.due_bill_no = b_days.db_no
 
@@ -98,4 +98,5 @@ left join
 where
 	review_loan_audit_status = 'L05' and loan_cashed_status in ('L05','L07','L99')
 	and user_credit_report_history_tid >0
-	and apply_time > '2017-6-1 00:00:00' and apply_time < '2018-12-1 00:00:00'
+	-- and apply_time > '2017-6-1 00:00:00' 
+  and apply_time < '2018-12-1 00:00:00'

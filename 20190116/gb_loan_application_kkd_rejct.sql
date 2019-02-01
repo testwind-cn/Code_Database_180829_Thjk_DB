@@ -87,7 +87,7 @@ LEFT JOIN
 
 LEFT JOIN
       -- 找出这个借据号的最大逾期天数
-	( SELECT db_no, max(overdue_days) as max_overdue_days from s6700 GROUP BY db_no )
+	( SELECT db_no, max(overdue_days) as max_overdue_days from s6700 where data_dt < "2019-1-1 0:00:00" GROUP BY db_no  )
 	as b_days
 	on gb_loan_application_kkd.due_bill_no = b_days.db_no
 
@@ -97,7 +97,8 @@ left join
 
 
 where apply_status in ( 1,4,12) and user_credit_report_history_tid >0
-and apply_time > '2017-6-1 00:00:00' and apply_time < '2018-12-1 00:00:00'
+-- and apply_time > '2017-6-1 00:00:00'
+  and apply_time < '2018-12-1 00:00:00'
 
 
 AND
