@@ -3,24 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4481a311-fa72-4f6f-9b6e-93634ff6167e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/20190116/gb_app_kkd_test.sql" beforeDir="false" afterPath="$PROJECT_DIR$/goodbooss/20190116/gb_app_kkd_test.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/20190116/gb_loan_application_kkd_normal.sql" beforeDir="false" afterPath="$PROJECT_DIR$/goodbooss/20190116/gb_loan_application_kkd_normal.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/20190116/gb_loan_application_kkd_rejct.sql" beforeDir="false" afterPath="$PROJECT_DIR$/goodbooss/20190116/gb_loan_application_kkd_rejct.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/20190116/gb_mcht_test.sql" beforeDir="false" afterPath="$PROJECT_DIR$/goodbooss/20190116/gb_mcht_test.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/20190116/gb_user_verify.sql" beforeDir="false" afterPath="$PROJECT_DIR$/goodbooss/20190116/gb_user_verify.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/20190116/gb_user_verify2.sql" beforeDir="false" afterPath="$PROJECT_DIR$/goodbooss/20190116/gb_user_verify2.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/20190116/gb_user_verify3.sql" beforeDir="false" afterPath="$PROJECT_DIR$/goodbooss/20190116/gb_user_verify3.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/20190116/normal3_1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/goodbooss/20190116/normal3_1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/20190116/normal3_2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/goodbooss/20190116/normal3_2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/20190116/reject3_1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/goodbooss/20190116/reject3_1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/20190116/reject3_2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/goodbooss/20190116/reject3_2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gb_console_test.sql" beforeDir="false" afterPath="$PROJECT_DIR$/goodbooss/gb_console_test.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gb_gb_loan_applicaiton_kkd.sql" beforeDir="false" afterPath="$PROJECT_DIR$/goodbooss/gb_gb_loan_applicaiton_kkd.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gb_redash.sql" beforeDir="false" afterPath="$PROJECT_DIR$/goodbooss/gb_redash.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gb_sss.sql" beforeDir="false" afterPath="$PROJECT_DIR$/goodbooss/gb_sss.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rc_t_deduct_overdue_mysql_risk.sql" beforeDir="false" afterPath="$PROJECT_DIR$/risk_control/rc_t_deduct_overdue_mysql_risk.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rc_user_family.sql" beforeDir="false" afterPath="$PROJECT_DIR$/risk_control/rc_user_family.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user_credit_report_history_test_wj.sql" beforeDir="false" afterPath="$PROJECT_DIR$/goodbooss/user_credit_report_history_test_wj.sql" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,6 +25,17 @@
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="goodboss@172.31.132.63" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="goodboss@172.31.132.63" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="goodboss@172.31.132.63" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="goodboss: schema" type="76f4a085:MysqlImplModel$Schema" />
       </path>
     </expand>
     <select />
@@ -98,7 +91,7 @@
         <entry file="file://$PROJECT_DIR$/risk_control/rc_t_deduct_overdue_mysql_risk.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="336">
-              <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+              <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -120,8 +113,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/goodbooss/gb_console_test.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1393">
-              <caret line="282" lean-forward="true" selection-start-line="282" selection-end-line="282" />
+            <state relative-caret-position="649">
+              <caret line="239" lean-forward="true" selection-start-line="239" selection-end-line="239" />
             </state>
           </provider>
         </entry>
@@ -161,7 +154,22 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="TestDB" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="TestDB" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="goodbooss" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -187,7 +195,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -218,12 +226,12 @@
       <option name="presentableId" value="Default" />
       <updated>1547712947484</updated>
       <workItem from="1547712948786" duration="3765000" />
-      <workItem from="1548151707391" duration="8921000" />
+      <workItem from="1548151707391" duration="10220000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12686000" />
+    <option name="totallyTimeSpent" value="13985000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="73" y="-4" width="1851" height="1088" extended-state="6" />
@@ -249,7 +257,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="right" id="Database" order="4" weight="0.13562752" />
+      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.28035814" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,7 +317,7 @@
     <entry file="file://$PROJECT_DIR$/risk_control/rc_t_deduct_overdue_mysql_risk.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
-          <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -325,8 +333,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/goodbooss/gb_console_test.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1393">
-          <caret line="282" lean-forward="true" selection-start-line="282" selection-end-line="282" />
+        <state relative-caret-position="649">
+          <caret line="239" lean-forward="true" selection-start-line="239" selection-end-line="239" />
         </state>
       </provider>
     </entry>
