@@ -1,8 +1,0 @@
--- db = pymysql.connect("10.91.1.10", "root", "RiskControl@2018", "unify")
-
--- db = pymysql.connect("10.91.1.10", "root", "RiskControl@2018", "data_warehouse")
-
-
--- https://www.jb51.net/article/99842.htm
--- MySQL中union和order by同时使用的实现方法
--- （2）可以通过两个查询分别加括号的方式，改成如下：

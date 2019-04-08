@@ -3,11 +3,99 @@
 -- db = pymysql.connect("10.91.1.10", "root", "RiskControl@2018", "data_warehouse")
 
 
+-- 1.信审历史表_credit_history
+-- 查询与排序方式
+SELECT * FROM
+( SELECT   * from credit_history where prod_code in ( '300317','0002000001','9001000001')
+  ORDER BY prod_code,CAST(apply_no AS UNSIGNED)
+) data1
+UNION ALL
+SELECT * FROM
+(
+SELECT   * from credit_history where prod_code in
+ ('8004000001', '8005000001','9002000003', '9003000004',
+  '9004000004', '9005000001','9006000003', '9007000004')
+-- not in ( '1','300317','0002000001','9001000001')
+  ORDER BY prod_code,apply_no
+) data2;
+
+
+
+-- 2.信审流水表_credit_pos_flow
+-- 查询与排序方式
+SELECT * from credit_pos_flow  ORDER BY merchant_ap;
+
+
+
+-- 3.信审风险表_credit_pos_risk
+-- 查询与排序方式
+SELECT * from credit_pos_risk  ORDER BY merchant_ap;
+
+
+
+-- 4.入口贷款表_entry_loan_apply.csv
+-- 查询与排序方式
+SELECT * from entry_loan_apply  where prod_code <> '1' ORDER BY prod_code,lmt_serno,merchant_ap,credit_status;
+
+
+
+-- 5.入口支用表_entry_loan_use.csv
+-- 查询与排序方式
+SELECT * FROM
+( SELECT   * from entry_loan_use where prod_code in ( '300317','0002000001') or prod_code is null
+  ORDER BY prod_code,CAST(trim(record_no) AS UNSIGNED)
+) data1
+UNION ALL
+SELECT * FROM
+(
+SELECT   * from entry_loan_use where prod_code in
+ ('8004000001', '8005000001','9002000003', '9003000004',
+  '9004000004', '9005000001','9006000003', '9007000004')
+-- not in ( '1','300317','0002000001','9001000001')
+  ORDER BY prod_code,record_no
+) data2;
+
+
+
+-- 6.入口商户表_entry_merchant.csv
+-- 查询与排序方式
+select  * from entry_merchant order by merchant_ap;
+-- 8126947
+
+
+
+-- 7.入口流水表_entry_pos_flow.csv
+-- 查询与排序方式
+select  * from entry_pos_flow order by merchant_ap;
+
+
+
+-- 8.入口还款计划表_entry_repay_plan.csv
+-- 查询与排序方式
+SELECT * FROM
+( SELECT   * from entry_repay_plan where prod_code in ( '9001000001')
+  ORDER BY prod_code,CAST(trim(record_no) AS UNSIGNED)
+) data1
+UNION ALL
+SELECT * FROM
+(
+SELECT   * from entry_repay_plan where prod_code in
+ ('8004000001', '8005000001','9002000003', '9003000004',
+  '9004000004', '9005000001','9006000003', '9007000004')
+-- not in ( '1','300317','0002000001','9001000001')
+  ORDER BY prod_code,record_no
+) data2;
+
+
+
+
+
+
 -- https://www.jb51.net/article/99842.htm
 -- MySQL中union和order by同时使用的实现方法
 -- （2）可以通过两个查询分别加括号的方式，改成如下：
 
-
+-- ------------ 建表语句 ---------------
 
 -- 1.信审历史表_credit_history
 -- 建表字段
@@ -32,24 +120,9 @@ CREATE TABLE `credit_history` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=239488 DEFAULT CHARSET=utf8 COMMENT='信审历史表';
 
--- 1.信审历史表_credit_history
--- 查询与排序方式
-SELECT * FROM
-( SELECT   * from credit_history where prod_code in ( '300317','0002000001','9001000001')
-  ORDER BY prod_code,CAST(apply_no AS UNSIGNED)
-) data1
-UNION ALL
-SELECT * FROM
-(
-SELECT   * from credit_history where prod_code in
- ('8004000001', '8005000001','9002000003', '9003000004',
-  '9004000004', '9005000001','9006000003', '9007000004')
--- not in ( '1','300317','0002000001','9001000001')
-  ORDER BY prod_code,apply_no
-) data2;
 
 
-
+/*
 -- prod_code ,DISTINCT(LENGTH(apply_no))
 -- 0002000001  4 5 6
 -- 300317  5 6
@@ -62,6 +135,8 @@ SELECT   * from credit_history where prod_code in
 -- 9005000001 23
 -- 9006000003 23
 -- 9007000004 23
+*/
+
 
 -- 2.信审流水表_credit_pos_flow
 -- 建表字段
@@ -88,10 +163,6 @@ CREATE TABLE `credit_pos_flow` (
   KEY `idx_merchantAp` (`merchant_ap`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1295675 DEFAULT CHARSET=utf8 COMMENT='信审流水表';
 
--- 2.信审流水表_credit_pos_flow
--- 查询与排序方式
-SELECT * from credit_pos_flow  ORDER BY merchant_ap;
-
 
 -- 3.信审风险表_credit_pos_risk
 -- 建表字段
@@ -111,9 +182,6 @@ CREATE TABLE `credit_pos_risk` (
   KEY `idx_merchantAp` (`merchant_ap`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='信审风险表';
 
--- 3.信审风险表_credit_pos_risk
--- 查询与排序方式
-SELECT * from credit_pos_risk  ORDER BY merchant_ap;
 
 -- 4.入口贷款表_entry_loan_apply
 -- 建表字段
@@ -142,11 +210,6 @@ CREATE TABLE `entry_loan_apply` (
   KEY `idx_certNo` (`cert_no`),
   KEY `idx_prodCode` (`prod_code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=640772 DEFAULT CHARSET=utf8 COMMENT='入口贷款表';
-
--- 4.入口贷款表_entry_loan_apply
--- 查询与排序方式
-SELECT * from entry_loan_apply  where prod_code <> '1' ORDER BY prod_code,lmt_serno,merchant_ap,credit_status;
-
 
 
 -- 5.入口支用表_entry_loan_use
@@ -201,22 +264,6 @@ SELECT DISTINCT(LENGTH(trim(record_no))),prod_code from entry_loan_use  where pr
 -- --------------------------------------
 
 
--- 5.入口支用表_entry_loan_use
--- 查询与排序方式
-SELECT * FROM
-( SELECT   * from entry_loan_use where prod_code in ( '300317','0002000001') or prod_code is null
-  ORDER BY prod_code,CAST(trim(record_no) AS UNSIGNED)
-) data1
-UNION ALL
-SELECT * FROM
-(
-SELECT   * from entry_loan_use where prod_code in
- ('8004000001', '8005000001','9002000003', '9003000004',
-  '9004000004', '9005000001','9006000003', '9007000004')
--- not in ( '1','300317','0002000001','9001000001')
-  ORDER BY prod_code,record_no
-) data2;
-
 -- 6.入口商户表_entry_merchant
 -- 建表字段
 CREATE TABLE `entry_merchant` (
@@ -242,12 +289,6 @@ CREATE TABLE `entry_merchant` (
   KEY `idx_modifyTime` (`modify_time`,`create_time`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8126948 DEFAULT CHARSET=utf8 COMMENT='入口商户表';
 
--- 6.入口商户表_entry_merchant
--- 查询与排序方式
-select  * from entry_merchant order by merchant_ap;
-
-
--- 8126947
 
 -- 7.入口流水表_bak_190122_entry_pos_flow
 -- 建表字段
@@ -269,9 +310,6 @@ CREATE TABLE `bak_190122_entry_pos_flow` (
   KEY `idx_merchantAp` (`merchant_ap`)
 ) ENGINE=InnoDB AUTO_INCREMENT=272127 DEFAULT CHARSET=utf8 COMMENT='入口流水表';
 
--- 7.入口流水表_entry_pos_flow
--- 查询与排序方式
-select  * from entry_pos_flow order by merchant_ap;
 
 -- 8.入口还款计划表_entry_repay_plan
 -- 建表字段
@@ -320,19 +358,3 @@ SELECT DISTINCT(LENGTH(trim(record_no))),prod_code from entry_repay_plan  where 
 -- 9003000004 = 23
 -- 9006000003 = 23
 -- --------------------------
-
--- 8.入口还款计划表_entry_repay_plan
--- 查询与排序方式
-SELECT * FROM
-( SELECT   * from entry_repay_plan where prod_code in ( '9001000001')
-  ORDER BY prod_code,CAST(trim(record_no) AS UNSIGNED)
-) data1
-UNION ALL
-SELECT * FROM
-(
-SELECT   * from entry_repay_plan where prod_code in
- ('8004000001', '8005000001','9002000003', '9003000004',
-  '9004000004', '9005000001','9006000003', '9007000004')
--- not in ( '1','300317','0002000001','9001000001')
-  ORDER BY prod_code,record_no
-) data2;

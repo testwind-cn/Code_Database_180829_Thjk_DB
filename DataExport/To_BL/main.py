@@ -35,22 +35,22 @@ a = df2.count()
 print(a)
 '''
 
-db = pymysql.connect("10.91.1.10", "root", "RiskControl@2018", "unify")
+db = pymysql.connect("10.91.1.10", "root", "RiskControl@2018", "data_warehouse")
 
 # 信审历史表
-sql = "SELECT distinct(sss.merchant_ap) from ( select * from bak_190122_credit_history where prod_code=1 )  as sss"
+sql = "SELECT distinct(sss.merchant_ap) from ( select * from credit_history where prod_code=1 )  as sss"
 df1 = pd.read_sql_query(sql, con=db)
 a = df1.count()
 print(a)
 
 # 信审流水表
-sql = "select distinct(merchant_ap) from bak_190122_credit_pos_flow"
+sql = "select distinct(merchant_ap) from credit_pos_flow"
 df2 = pd.read_sql_query(sql, con=db)
 a = df2.count()
 print(a)
 
 # 信审风险表
-sql = "select distinct(merchant_ap) from bak_190122_credit_pos_risk"
+sql = "select distinct(merchant_ap) from credit_pos_risk"
 df3 = pd.read_sql_query(sql, con=db)
 a = df3.count()
 print(a)
@@ -59,18 +59,18 @@ print(a)
 k_df1 = pd.merge(df1, df2, how='inner', on='merchant_ap')
 a = k_df1.count()
 print(a)
-k_df1 = k_df1.sample(n=200)
+k_df1 = k_df1.sample(n=20)
 
 
 k_df2 = pd.merge(df3, df2, how='inner', on='merchant_ap')
 a = k_df2.count()
 print(a)
-k_df2 = k_df2.sample(n=200)
+k_df2 = k_df2.sample(n=20)
 
 ##########################
 # 信审历史表 k_df1 = 1 * 2
 
-sql = "select * from bak_190122_credit_history where prod_code=1 "
+sql = "select * from credit_history where prod_code=1 "
 df1 = pd.read_sql_query(sql, con=db)
 a = df1.count()
 print(a)
@@ -85,7 +85,7 @@ writer.save()
 
 ##########################
 # 信审流水表  k_df1 = 1 * 2 ，  k_df2 = 2 * 3
-sql = "select * from bak_190122_credit_pos_flow"
+sql = "select * from credit_pos_flow"
 df2 = pd.read_sql_query(sql, con=db)
 a = df2.count()
 print(a)
@@ -108,7 +108,7 @@ writer.save()
 
 #########################
 # 信审风险表  k_df2 = 2 * 3
-sql = "select * from bak_190122_credit_pos_risk"
+sql = "select * from credit_pos_risk"
 df3 = pd.read_sql_query(sql, con=db)
 a = df3.count()
 print(a)

@@ -26,7 +26,7 @@ print("Database version : %s " % data)
 
 关闭数据库连
 db.close()
-sql = "select * from bak_190122_credit_pos_flow"
+sql = "select * from credit_pos_flow"
 df = pd.read_sql_query(sql, con=db)
 a = df.count()
 print(a)
@@ -35,25 +35,25 @@ a = df2.count()
 print(a)
 '''
 
-db = pymysql.connect("10.91.1.10", "root", "RiskControl@2018", "unify")
+db = pymysql.connect("10.91.1.10", "root", "RiskControl@2018", "data_warehouse")
 
 
-sql = "SELECT distinct(sss.merchant_ap) from ( select * from bak_190122_entry_loan_apply where prod_code=1 )  as sss"
+sql = "SELECT distinct(sss.merchant_ap) from ( select * from entry_loan_apply where prod_code=1 )  as sss"
 df4 = pd.read_sql_query(sql, con=db)
 a = df4.count()
 print(a)
 
-sql = "SELECT distinct(sss.merchant_ap) from ( select * from bak_190122_entry_loan_use where prod_code=1 )  as sss"
+sql = "SELECT distinct(sss.merchant_ap) from ( select * from entry_loan_use where prod_code=1 )  as sss"
 df5 = pd.read_sql_query(sql, con=db)
 a = df5.count()
 print(a)
 
-sql = "select distinct(merchant_ap) from bak_190122_entry_merchant"
+sql = "select distinct(merchant_ap) from entry_merchant"
 df6 = pd.read_sql_query(sql, con=db)
 a = df6.count()
 print(a)
 
-sql = "select distinct(merchant_ap) from bak_190122_entry_pos_flow"
+sql = "select distinct(merchant_ap) from entry_pos_flow"
 df7 = pd.read_sql_query(sql, con=db)
 a = df7.count()
 print(a)
@@ -62,18 +62,18 @@ print(a)
 k_df1 = pd.merge(df5, df6, how='inner', on='merchant_ap')
 a = k_df1.count()
 print(a)
-k_df1 = k_df1.sample(n=200)
+k_df1 = k_df1.sample(n=20)
 
 #  k_df2 = 4 * 6
 k_df2 = pd.merge(df4, df6, how='inner', on='merchant_ap')
 a = k_df2.count()
 print(a)
-k_df2 = k_df2.sample(n=400)
+k_df2 = k_df2.sample(n=20)
 
 ##########################
 # 4 入口贷款表   k_df1 = 5 * 6 ，  k_df2 = 4 * 6
 
-sql = "select * from bak_190122_entry_loan_apply where prod_code=1 "
+sql = "select * from entry_loan_apply where prod_code=1 "
 df4 = pd.read_sql_query(sql, con=db)
 a = df4.count()
 print(a)
@@ -96,7 +96,7 @@ writer.save()
 
 ##########################
 # 5 入口支用表  k_df1 = 5 * 6 ，  k_df2 = 4 * 6
-sql = "select * from bak_190122_entry_loan_use where prod_code=1 "
+sql = "select * from entry_loan_use where prod_code=1 "
 df5 = pd.read_sql_query(sql, con=db)
 a = df5.count()
 print(a)
@@ -112,7 +112,7 @@ writer.save()
 ##########################
 # 6 入口商户表   k_df1 = 5 * 6 ，  k_df2 = 4 * 6
 
-sql = "select * from bak_190122_entry_merchant"
+sql = "select * from entry_merchant"
 df6 = pd.read_sql_query(sql, con=db)
 a = df6.count()
 print(a)
@@ -136,7 +136,7 @@ writer.save()
 ##########################
 # 7 入口流水表   k_df1 = 5 * 6 ，  k_df2 = 4 * 6
 
-sql = "select * from bak_190122_entry_pos_flow"
+sql = "select * from entry_pos_flow"
 df7 = pd.read_sql_query(sql, con=db)
 a = df7.count()
 print(a)

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="goodboss@172.31.132.63">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.14">
+<dataSource name="MySQL-new - goodboss@172.31.132.63">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.15">
     <root id="1">
       <ServerVersion>5.6.26</ServerVersion>
       <DefaultEngine>InnoDB</DefaultEngine>
@@ -1903,7 +1903,7 @@
             E-资源管理
             F-组织机构管理
             G-后台登陆
-            </Comment>
+</Comment>
       <DataType>char(2)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1965,7 +1965,7 @@
       <Comment>R - Regist 商户注册认领
             F - Fast 快快贷认领
             D - Daliy天天融认领
-            </Comment>
+</Comment>
       <DataType>char(1)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
@@ -12158,7 +12158,7 @@ create_time</ColNames>
     </column>
     <column id="2339" parent="345" name="status">
       <Position>13</Position>
-      <Comment>状态： 0-待审核 1-审核通过 2-审核拒绝 </Comment>
+      <Comment>状态： 0-待审核 1-审核通过 2-审核拒绝</Comment>
       <DataType>char(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -14867,7 +14867,7 @@ create_time</ColNames>
       <Comment>A. administrator 管理员直接修改&#xd;
             C, customer manager 客户经理上报（已通过）&#xd;
             S, system 系统自动生成&#xd;
-            </Comment>
+</Comment>
       <DataType>char(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -14876,7 +14876,7 @@ create_time</ColNames>
       <Comment>A. administrator 管理员添加&#xd;
             C, customer manager 客户经理上报（已通过）&#xd;
             S, system 系统自动生成&#xd;
-            </Comment>
+</Comment>
       <DataType>char(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -14968,7 +14968,7 @@ create_time</ColNames>
       <Comment>A. administrator 管理员直接修改&#xd;
             C, customer manager 客户经理上报（已通过）&#xd;
             S, system 系统自动生成&#xd;
-            </Comment>
+</Comment>
       <DataType>char(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -14977,7 +14977,7 @@ create_time</ColNames>
       <Comment>A. administrator 管理员添加&#xd;
             C, customer manager 客户经理上报（已通过）&#xd;
             S, system 系统自动生成&#xd;
-            </Comment>
+</Comment>
       <DataType>char(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -15172,7 +15172,7 @@ product_cd</ColNames>
       <Position>10</Position>
       <Comment>A. administrator 管理员直接修改&#xd;
             C, customer manager 客户经理上报（已通过）&#xd;
-            </Comment>
+</Comment>
       <DataType>char(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -15180,7 +15180,7 @@ product_cd</ColNames>
       <Position>11</Position>
       <Comment>A. administrator 管理员添加&#xd;
             C, customer manager 客户经理上报（已通过）&#xd;
-            </Comment>
+</Comment>
       <DataType>char(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -15265,7 +15265,7 @@ create_time</ColNames>
       <Position>12</Position>
       <Comment>A. administrator 管理员直接修改&#xd;
             C, customer manager 客户经理上报（已通过）&#xd;
-            </Comment>
+</Comment>
       <DataType>char(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -15273,7 +15273,7 @@ create_time</ColNames>
       <Position>13</Position>
       <Comment>A. administrator 管理员添加&#xd;
             C, customer manager 客户经理上报（已通过）&#xd;
-            </Comment>
+</Comment>
       <DataType>char(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -16689,7 +16689,7 @@ create_time</ColNames>
       <Comment>A. administrator 管理员直接修改
             C, customer manager 客户经理上报（已通过）
             S, system 系统自动生成
-            </Comment>
+</Comment>
       <DataType>char(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -16698,7 +16698,7 @@ create_time</ColNames>
       <Comment>A. administrator 管理员添加
             C, customer manager 客户经理上报（已通过）
             S, system 系统自动生成
-            </Comment>
+</Comment>
       <DataType>char(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>

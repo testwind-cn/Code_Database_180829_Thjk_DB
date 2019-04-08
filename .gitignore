@@ -1,4 +1,13 @@
-.idea
-.idea\*.xml
-.idea/*.xml
+#wj add
+#.idea/
+#*.jar
+# .idea/workspace.xml
 
+
+.idea/workspace.xml
+*/.idea/workspace.xml
+*/*/.idea/workspace.xml
+*/*/*/.idea/workspace.xml
+
+data_tmp/
+id_cache.*
