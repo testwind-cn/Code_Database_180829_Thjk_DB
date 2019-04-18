@@ -51,8 +51,10 @@ def download(handle, remotePath, localAbsDir):
     result = [1, ""]
     sftp = paramiko.SFTPClient.from_transport(handle)
     try:
-        remotePath = formatPath(remotePath)
-        localAbsDir = formatPath(localAbsDir)
+        # remotePath = formatPath(remotePath)
+        # localAbsDir = formatPath(localAbsDir)
+        # 上面两句不良代码， WJ删除
+
         remoteRel = ""
         if remotePath == "":
             remotePath = sftp_config.remoteDir
