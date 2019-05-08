@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/Hive_100/Hive_建表测试.sql" dialect="HiveQL" />
+    <file url="file://$PROJECT_DIR$/Hive_100/d0009_create.sql" dialect="HiveQL" />
+    <file url="file://$PROJECT_DIR$/Hive_100/d0010_create.sql" dialect="HiveQL" />
+    <file url="file://$PROJECT_DIR$/Hive_100/s6700_create.sql" dialect="HiveQL" />
     <file url="PROJECT" dialect="MySQL" />
   </component>
 </project>

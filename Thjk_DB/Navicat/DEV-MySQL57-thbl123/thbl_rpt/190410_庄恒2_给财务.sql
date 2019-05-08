@@ -17,9 +17,9 @@ SELECT CASE
        sum(1)        AS `户数`,
        sum(`col_40`)/10000.0 AS `应收本金余额（万元）`
 FROM d0009
-WHERE `col_47` > 30
-  AND `col_09` < '2018-12-31'
-  AND data_dt = '2018-12-31'
+WHERE  `col_47` > 30  -- 只要逾期天数大于30天的
+  AND `col_09` < '2018-12-31'  -- 在报表日期时已经到期了
+  AND data_dt = '2018-12-31'   -- 报表日期
 GROUP BY CASE
              WHEN `col_47` > 30
                  AND `col_47` <= 60 THEN '（30-60]天'

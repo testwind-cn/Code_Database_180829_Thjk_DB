@@ -219,11 +219,11 @@ def cal_data3(p_file, p_file_out):
 
 
 if __name__ == "__main__":
-    date = "20190403"
+    date = "20190331"
 
     print(os.getcwd())
-    file_name1 = os.path.join(os.getcwd(), 'data_tmp', date, 'D0009LoanSurplusRpt_1.xls')
-    file_name2 = os.path.join(os.getcwd(), 'data_tmp', u'D0009LoanSurplusRpt_1_修改_{}.xls'.format(date))
+    file_name1 = os.path.join(os.getcwd(), '..', '..', '..', 'data_tmp', date, 'D0009LoanSurplusRpt_1.xls')
+    file_name2 = os.path.join(os.getcwd(), '..', '..', '..', 'data_tmp_out', u'D0009LoanSurplusRpt_1_修改_{}.xls'.format(date))
     print(file_name1)
 
     convert_excel_D0009(p_file_name1=file_name1, p_file_name2=file_name2)
@@ -234,15 +234,15 @@ if __name__ == "__main__":
     # #####################################################
     # 用Pandas 计算放款变化趋势
     # 用D0009计算是不对的，下面的是用D0010来计算
-    # cal_data3(file_name2,"output_D0009.xlsx")
+    # cal_data3(file_name2, os.path.join(os.getcwd(), '..', '..', '..', 'data_tmp_out', date, 'output_D0009.xlsx'))
 
-    file_name1 = os.path.join(os.getcwd(), date, 'D0010LoanSurplusRpt_01.xls')
-    file_name2 = os.path.join(os.getcwd(), u'D0010LoanSurplusRpt_01_修改_{}.xls'.format(date))
+    file_name1 = os.path.join(os.getcwd(), '..', '..', '..', 'data_tmp', date, 'D0010LoanSurplusRpt_01.xls')
+    file_name2 = os.path.join(os.getcwd(), '..', '..', '..', 'data_tmp_out', u'D0010LoanSurplusRpt_01_修改_{}.xls'.format(date))
     print(file_name1)
 
     # convert_excel_D0010(p_file_name1=file_name1, p_file_name2=file_name2)
 
-    # cal_data3(file_name2, "output_D0010.xlsx")
+    # cal_data3(file_name2, os.path.join(os.getcwd(), '..', '..', '..', 'data_tmp_out', date, 'output_D0010.xlsx'))
 
 
 

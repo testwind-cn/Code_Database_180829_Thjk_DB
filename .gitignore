@@ -1,8 +1,9 @@
-#wj add
+﻿#wj add
 #.idea/
 #*.jar
 # .idea/workspace.xml
 
+~$*.*
 
 workspace.xml
 .idea/workspace.xml
@@ -12,4 +13,8 @@ workspace.xml
 */*/*/.idea/workspace.xml
 
 data_tmp/
+# 下载文件的位置
+data_tmp_out/
+# 输出文件的位置
 id_cache.*
+# Navicat 缓存

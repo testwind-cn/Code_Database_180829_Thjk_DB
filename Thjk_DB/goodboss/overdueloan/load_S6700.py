@@ -1,10 +1,11 @@
 #!coding:utf-8
 
 import os
-from goodboss.overdueloan.wj_tools.tool_load_txt import LoadText
-from goodboss.overdueloan.wj_tools import sftpUtil
-from goodboss.overdueloan.wj_tools.str_tool import StrTool
-from goodboss.overdueloan.wj_tools.tool_mysql import TheDB
+from py_tools.file_load_base import FileLoad
+from py_tools import sftpUtil
+from py_tools.str_tool import StrTool
+from py_tools.tool_mysql import TheDB
+import pathlib
 
 # https://xlrd.readthedocs.io/en/latest/api.html?highlight=Cell#xlrd.sheet.Cell
 
@@ -57,7 +58,7 @@ col_21,col_22,col_23,col_24,col_25,col_26,col_27,col_28,col_29,data_dt
 VALUES
 {} ;"""
 
-s_sql2 = "DELETE from s6700 WHERE data_dt = str_to_date('{}','%Y%m%d')"
+s_sql2 = "DELETE from s6700 WHERE data_dt = str_to_date('{}','%Y-%m-%d')"
 
 
 """
@@ -133,21 +134,25 @@ CREATE TABLE `s6700` (
 """
 
 
-def load_text_s6700(p_the_db: TheDB, p_date, p_f_name='S6700LoanRecord_000080000001_{}'):  # : str = u'D0009LoanSurplusRpt_1_修改.xls'
-    # u'D0009LoanSurplusRpt_1_修改_{}.xls'
-    # file_name1 = os.path.join(os.getcwd(), u'D0009LoanSurplusRpt_1_修改_{}.xls'.format(p_date))
+def load_text_s6700(p_the_db: TheDB, p_table, p_date, p_f_name='S6700LoanRecord_000080000001_{}'):  # : str =
+    date_08 = StrTool.get_the_date_str(p_date, 0, 8)
+    file_name1 = os.path.join(os.getcwd(), '..', '..', '..', 'data_tmp', date_08, p_f_name.format(date_08))
+    path_1 = pathlib.Path(file_name1)
+    file_name1 = str(path_1.resolve(strict=False))
 
-    file_name1 = os.path.join(os.getcwd(), 'data_tmp', p_date, p_f_name.format(p_date))
-
-    a = LoadText()
-    a.load_text_by_row(p_the_db=p_the_db, p_file_name1=file_name1, p_first_row=1, p_total_col=29, p_sql=s_sql, p_sql2=s_sql2, p_data_type=data_type_s6700, the_date=p_date, p_data_pos=data_pos_s6700)
+    a = FileLoad(p_file_name1=file_name1, p_first_row=1, p_total_col=29, p_ctl_col=-1, p_data_type=data_type_s6700,p_data_pos=data_pos_s6700)
+    a.LoadHive_Mysql(p_thedate=p_date, file_type=1, p_the_db=p_the_db, p_table=p_table, p_sql=s_sql, p_sql2=s_sql2)
 
 
 def download_text_s6700(p_date, p_f_name='S6700LoanRecord_000080000001_{}'):
     # /datateam/reports/REPORTS/20190325/S620000TranAdjSummary_000080000001_20190325.OK
-    result = sftpUtil.getConnect("101.230.217.35", 9999, "report", "rep2018")
-    file_name1 = "/datateam/reports/REPORTS/" + p_date + "/" + p_f_name.format(p_date)
-    file_name2 = os.path.join(os.getcwd(), 'data_tmp', p_date)
+    date_08 = StrTool.get_the_date_str(p_date, 0, 8)
+    result = sftpUtil.getConnect("172.31.130.14", 22, "report", "rep2018")
+    file_name1 = "/datateam/reports/REPORTS/" + date_08 + "/" + p_f_name.format(date_08)
+    file_name2 = os.path.join(os.getcwd(), '..', '..', '..', 'data_tmp', date_08)
+    path_1 = pathlib.Path(file_name2)
+    file_name2 = str(path_1.resolve(strict=False))
+
     if result[0] == 1:
         result2 = sftpUtil.download(result[2], file_name1, file_name2)
         sftpUtil.closeConnect(result[2])
@@ -172,23 +177,28 @@ if __name__ == "__main__":
             load_excel_D0009(date, fname)
 """
 
-    date = "20190404"
+    date = "201804027"
     fname = 'S6700LoanRecord_000080000001_{}'
 
     the_db = TheDB()
     the_db.connect(
-        host='127.0.0.1',
+        host='10.91.1.19',
         port=3306,
-        user='root',
-        passwd='thbl123',
-        db='echart'
+        user='risk',
+        passwd='fTO@J5jmW&Q4',
+        db='thbl_rpt'
     )
 
-    for i in range(0, 1):
-        date = StrTool.get_the_date_str("20190404", i)
-        print("================   " + date)
-        if download_text_s6700(date, fname):
-            load_text_s6700(p_the_db=the_db, p_date=date, p_f_name=fname)
+    # for i in range(0, 357):
+    #     date_10 = StrTool.get_the_date_str("20180427", i, 10)
+    #     print("================   " + date_10)
+    #     if download_text_s6700(date_10, fname):
+    #         load_text_s6700(p_the_db=None, p_table="allinpal_rpt.thbl_rpt_s6700", p_date=date_10, p_f_name=fname)
+
+    date_10 = StrTool.get_the_date_str("", -1, 10)
+    print("================   " + date_10)
+    if download_text_s6700(date_10, fname):
+        load_text_s6700(p_the_db=the_db, p_table="allinpal_rpt.thbl_rpt_s6700", p_date=date_10, p_f_name=fname)
 
     # 关闭连接
     the_db.close()

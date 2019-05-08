@@ -1,10 +1,11 @@
 #!coding:utf-8
 
 import os
-from goodboss.overdueloan.wj_tools.tool_load_excel_notype import LoadExcel
-from goodboss.overdueloan.wj_tools import sftpUtil
-from goodboss.overdueloan.wj_tools.str_tool import StrTool
-from goodboss.overdueloan.wj_tools.tool_mysql import TheDB
+from py_tools.file_load_base import FileLoad
+from py_tools import sftpUtil
+from py_tools.str_tool import StrTool
+from py_tools.tool_mysql import TheDB
+import pathlib
 
 # https://xlrd.readthedocs.io/en/latest/api.html?highlight=Cell#xlrd.sheet.Cell
 
@@ -29,24 +30,29 @@ col_41,col_42,col_43,col_44,col_45,col_46,col_47,data_dt
 VALUES
 {} ;
 """
-s_sql2 = "DELETE from d0009 WHERE data_dt = str_to_date('{}','%Y%m%d')"
+s_sql2 = "DELETE from d0009 WHERE data_dt = str_to_date('{}','%Y-%m-%d')"
 
 
-def load_excel_D0009(p_the_db: TheDB, p_date, p_f_name='D0009LoanSurplusRpt_1.xls'):  # : str = u'D0009LoanSurplusRpt_1_修改.xls'
-    # u'D0009LoanSurplusRpt_1_修改_{}.xls'
-    # file_name1 = os.path.join(os.getcwd(), u'D0009LoanSurplusRpt_1_修改_{}.xls'.format(p_date))
+def load_excel_D0009(p_the_db: TheDB,p_table, p_date, p_f_path, p_f_name):
+    date_08 = StrTool.get_the_date_str(p_date, 0, 8)
+    p_f_name = p_f_name.format(date_08)
+    file_name1 = str(pathlib.PurePath(p_f_path.format(date_08)).joinpath(p_f_name))
+    path_1 = pathlib.Path(file_name1)
+    file_name1 = str(path_1.resolve(strict=False))
 
-    file_name1 = os.path.join(os.getcwd(), 'data_tmp', p_date, p_f_name)
-
-    a = LoadExcel()
-    a.load_excel_by_row(p_the_db=p_the_db, p_file_name1=file_name1, p_first_row=4, p_total_col=62, p_sql=s_sql, p_sql2=s_sql2, p_data_type=data_type_D0009, the_date=p_date)
+    a = FileLoad(p_file_name1=file_name1, p_first_row=4, p_total_col=62, p_ctl_col=1, p_data_type=data_type_D0009)
+    a.LoadHive_Mysql(p_thedate=p_date, file_type=0, p_the_db=p_the_db, p_table=p_table, p_sql=s_sql, p_sql2=s_sql2)
 
 
-def download_excel_D0009(p_date, p_f_name='D0009LoanSurplusRpt_1.xls'):
-    # /datateam/reports/REPORTS/20190325/S620000TranAdjSummary_000080000001_20190325.OK
-    result = sftpUtil.getConnect("101.230.217.35", 9999, "report", "rep2018")
-    file_name1 = "/datateam/reports/REPORTS/" + p_date + "/" + p_f_name
-    file_name2 = os.path.join(os.getcwd(), 'data_tmp', p_date)
+def download_excel_D0009(p_host,p_port,p_user,p_pass,p_date, p_f_path,p_f_name,p_l_path):
+    date_08 = StrTool.get_the_date_str(p_date, 0, 8)
+    result = sftpUtil.getConnect(p_host, p_port, p_user, p_pass)
+    p_f_name = p_f_name.format(date_08)
+    file_name1 = str(pathlib.PurePosixPath(p_f_path.format(date_08)).joinpath(p_f_name))
+    file_name2 = p_l_path.format(date_08)
+    path_1 = pathlib.Path(file_name2)
+    file_name2 = str(path_1.resolve(strict=False))
+
     if result[0] == 1:
         result2 = sftpUtil.download(result[2], file_name1, file_name2)
         sftpUtil.closeConnect(result[2])
@@ -60,40 +66,30 @@ def download_excel_D0009(p_date, p_f_name='D0009LoanSurplusRpt_1.xls'):
 
 
 if __name__ == "__main__":
-    """
-    date = "20190329"
-    fname = 'D0009LoanSurplusRpt_1.xls'
-
-    for i in range(0, 342):
-        date = StrTool.get_the_date_str("20180427", i)
-        print("================   " + date)
-        if download_excel_D0009(date, fname):
-            load_excel_D0009(date, fname)
-"""
-
-    date = "20190404"
-    fname = 'D0009LoanSurplusRpt_1.xls'
-
     the_db = TheDB()
     the_db.connect(
-        host='127.0.0.1',
+        host='10.91.1.19',
         port=3306,
-        user='root',
-        passwd='thbl123',
-        db='echart'
+        user='risk',
+        passwd='fTO@J5jmW&Q4',
+        db='thbl_rpt'
     )
 
-    for i in range(0, 1):
-        date = StrTool.get_the_date_str("20190404", i)
-        print("================   " + date)
-        if download_excel_D0009(date, fname):
-            load_excel_D0009(p_the_db=the_db, p_date=date, p_f_name=fname)
+    f_host="172.31.130.14"
+    f_port=22
+    f_user="report"
+    f_pass="rep2018"
+
+    date = "20190404"
+    f_path = "/datateam/reports/REPORTS/{}/"
+    fname = 'D0009LoanSurplusRpt_1.xls'
+    local_path = os.path.join(os.getcwd(), '..', '..', '..', 'data_tmp', '{}')
+    f_table = "allinpal_rpt.thbl_rpt_d0009"
+
+    date_10 = StrTool.get_the_date_str("", -1, 10)
+    print("================   " + date_10)
+    if download_excel_D0009(p_host=f_host,p_port=f_port,p_user = f_user, p_pass=f_pass,p_date=date_10, p_f_path=f_path, p_f_name=fname, p_l_path=local_path):
+        load_excel_D0009(p_the_db=the_db, p_table=f_table, p_date=date_10, p_f_path=local_path, p_f_name=fname)
 
     # 关闭连接
     the_db.close()
-
-
-
-
-
-
