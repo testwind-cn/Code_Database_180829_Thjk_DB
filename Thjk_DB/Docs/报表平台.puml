@@ -1,0 +1,36 @@
+@startuml
+
+'skinparam monochrome true
+skinparam backgroundColor #FFFFFF
+
+skinparam activity {
+StartColor #8040F0
+EndColor #8040F0
+'BarColor SaddleBrown
+'BarColor #FFFFFF
+'Silver
+'BackgroundColor Peru
+BackgroundColor #FFFFFF
+'BackgroundColor<< Begin >> Olive
+BackgroundColor<< Begin >> #FFFFFF
+'BorderColor Peru
+'FontName Impact
+FontSize 20
+
+ArrowColor #FF6655
+ArrowFontSize 18
+ArrowFontColor #FF7777
+}
+
+start
+:Hello world;
+-> 每日定时处理;
+: HIVE DM 数据;
+-> 每日定时处理;
+:Mysql 表;
+-> 人工查询;
+ :报表客户端查询;
+: 报表下载 excel 文件;
+stop
+
+@enduml

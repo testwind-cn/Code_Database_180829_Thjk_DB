@@ -71,6 +71,7 @@ FROM (
 								-- 当天的前一天
 						-- or data_dt in ( '2019-03-28','2019-03-21','2019-04-03')
 						-- 以前做过这几天
+						or data_dt in ( cast( DATE_SUB('2019-05-02',0) as date) )
          GROUP BY data_dt
      ) data_1
          LEFT JOIN
@@ -87,6 +88,7 @@ FROM (
 							-- 当天的前一天
 							-- or data_dt in ( '2019-03-28','2019-03-21','2019-04-03')
 													-- 以前做过这几天
+					or data_dt in ( cast( DATE_SUB('2019-05-02',0) as date) )
          GROUP BY data_dt
      ) data_2
      ON 

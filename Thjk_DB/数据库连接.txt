@@ -30,3 +30,12 @@
  端口号		3306
  用户名		readonly
  密码		Thblreadonly2017ZAQ!
+
+
+ ----------------------研发的开发环境--------------------------------------
+ url:       jdbc:mysql://172.31.100.202:3306/data_warehouse?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
+ 主机名称	172.31.100.202
+ 数据库名称	data_warehouse
+ 端口号		3306
+ 用户名		datauser
+ 密码		kpo9raFllycl@fc0
