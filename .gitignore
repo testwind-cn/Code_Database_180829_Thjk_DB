@@ -3,6 +3,7 @@
 #*.jar
 # .idea/workspace.xml
 
+
 ~$*.*
 id_cache.*
 
@@ -12,6 +13,10 @@ workspace.xml
 */.idea/workspace.xml
 */*/.idea/workspace.xml
 */*/*/.idea/workspace.xml
+
+markdown-navigator/
+markdown*.xml
+
 
 data_tmp/
 # 下载文件的位置

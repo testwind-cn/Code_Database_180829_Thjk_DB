@@ -1,0 +1,68 @@
+flow_amt_3M_1 + flow_amt_3M_2 最近一个月
+flow_amt_3M_3 + flow_amt_3M_4 最近2个月
+flow_amt_3M_3 + flow_amt_3M_6 最近2个月
+
+
+
+
+flow_amt_6M_1	最近1个月
+flow_amt_6M_2	最近2个月
+flow_amt_6M_3	最近3个月
+flow_amt_6M_4	最近4个月
+flow_amt_6M_5	最近5个月
+flow_amt_6M_6	最近6个月
+
+【flow_amt_coord】
+{"7D":["0.00","0.00","0.00","0.00","0.00","0.00","0.00"],"1M":["0.00","0.00","0.00","0.00"],"3M":["0.00","0.00","0.00","13224.00","12659.00","39622.80"],"6M":["0.00","13224.00","52281.80","53044.00","37113.50","15257.50"]}
+"6M":["0.00","13224.00","52281.80","53044.00","37113.50","15257.50"]}
+
+
+    concat('{"7D":["',concat_ws('","',flow_amt_7D_1,flow_amt_7D_2,flow_amt_7D_3,flow_amt_7D_4,flow_amt_7D_5,flow_amt_7D_6,flow_amt_7D_7),
+    '"],"1M":["',concat_ws('","',flow_amt_1M_1,flow_amt_1M_2,flow_amt_1M_3,flow_amt_1M_4),
+    '"],"3M":["',concat_ws('","',flow_amt_3M_1,flow_amt_3M_2,flow_amt_3M_3,flow_amt_3M_4,flow_amt_3M_5,flow_amt_3M_6),
+    '"],"6M":["',concat_ws('","',flow_amt_6M_1,flow_amt_6M_2,flow_amt_6M_3,flow_amt_6M_4,flow_amt_6M_5,flow_amt_6M_6),'"]}') AS flow_amt_coord,
+
+
+flow_amt_1M_1
+
+
+【flow_vol】
+	{"7D":"0","1M":"0","3M":"216","6M":"648"}
+concat('{"7D":"',flow_vol_7D,'","1M":"',flow_vol_1M,'","3M":"',flow_vol_3M,'","6M":"',flow_vol_6M,'"}') AS flow_vol,
+
+
+
+
+【flow_avg_dly】
+{"7D":"0.00","1M":"0.00","3M":"2113.09","6M":"5513.57"}
+    concat('{"7D":"',flow_avg_dly_7D,'","1M":"',flow_avg_dly_1M,'","3M":"',flow_avg_dly_3M,'","6M":"',flow_avg_dly_6M,'"}') AS flow_avg_dly,
+
+========================
+
+flow_amt_6M_1 > 0 and flow_amt_6M_2> 0 •	最近2个月每个月有经营流水, 上月交易总额
+	flow_amt_coord, r'"6M":\["([\d\.]*)"'
+	flow_amt_coord, r'"6M":\["[\d\.]*","([\d\.]*)"'
+
+flow_amt_6M_1   >= 100 <= 30W  •	最近30天总流水不小于100元，不大于30万元
+
+flow_avg_dly_6M * 31 / 6 >= 100 <= 30W , •	最近6个月月均流水不小于100元，不大于30万元
+	flow_avg_dly ，r'"6M":"([\d\.]*)'
+
+flow_vol_1M >= 10 •	最近30天交易笔数不小于10笔 - 31天
+	flow_vol, r'"1M":"([\d\.]*)'
+
+flow_vol_7D >= 1 •	最近10天交易笔数不小于1笔 - 7天
+	flow_vol, r'"7D":"([\d\.]*)'
+
+
+
+
+
+
+
+
+
+
+
+
+
