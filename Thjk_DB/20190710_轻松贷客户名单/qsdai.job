@@ -1,4 +1,0 @@
-type=command
-
-
-command=ssh 10.91.1.100 "/data/ods_ftp/qsdai.sh"

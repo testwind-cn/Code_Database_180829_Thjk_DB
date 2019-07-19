@@ -1,13 +1,11 @@
 
-
 set hive.merge.mapfiles = true;
 set hive.merge.mapredfiles = true;
 set hive.merge.size.per.task = 256000000;
 set hive.merge.smallfiles.avgsize=16000000;
 
-drop table if exists `ods_ftp`.`temp_qsd_merchant`;
-
-CREATE TABLE `ods_ftp`.`temp_qsd_merchant` (
+drop table if exists `ods_ftp`.`qsd_merchant_temp`;
+CREATE TABLE `ods_ftp`.`qsd_merchant_temp` (
   `flow_amt_1M_1` string COMMENT '',
   `flow_amt_1M_2`  string COMMENT '',
   `flow_amt_6M_1`  string COMMENT '',
@@ -27,7 +25,7 @@ STORED AS TEXTFILE;
 
 
 
-insert into table `ods_ftp`.`temp_qsd_merchant`
+insert into table `ods_ftp`.`qsd_merchant_temp`
 select
     `flow_amt_1M_1`,
     `flow_amt_1M_2`,
@@ -77,6 +75,4 @@ left semi join
 on ccc.merchant_ap = aaa.mcht_cd_1
 ;
 
-drop table if exists `ods_ftp`.`qsd_merchant`;
 
-ALTER TABLE `ods_ftp`.`temp_qsd_merchant` RENAME TO `ods_ftp`.`qsd_merchant`;
