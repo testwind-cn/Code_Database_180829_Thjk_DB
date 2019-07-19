@@ -27,8 +27,8 @@ CREATE TABLE `ods_ftp`.`temp_merchant_${THE_DATE}` (
   `dt_type` string COMMENT '记录类型', -- HIVE建表
   `mcht_cd`  string COMMENT '商户编码',
   `bran_cd`  string COMMENT '公司代码',
-  `mcht_name`  string COMMENT '商户名称  -- 通金导库文件里错写成：商户营业名称*',
-  `mcht_business_name`  string COMMENT '商户营业名称  -- 通金导库文件里错写成：商户名称',
+  `mcht_name`  string COMMENT '商户名称',  -- 通金导库文件里错写成：商户营业名称*
+  `mcht_business_name`  string COMMENT '商户营业名称',  -- 通金导库文件里错写成：商户名称
   `mcht_org_cd`  string COMMENT '商户收单机构代码',
   `mcht_business_license`  string COMMENT '营业执照号码',
   `mcht_type`  string COMMENT '商户类型',
