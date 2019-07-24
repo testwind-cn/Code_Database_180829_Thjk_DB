@@ -1,4 +1,4 @@
-CREATE TABLE `ods_ftp`.`merchant_info` (
+CREATE TABLE `dw_2g`.`dwd_merchant_info` (
   `dt_type` string COMMENT '记录类型', -- HIVE建表
   `mcht_cd`  string COMMENT '商户编码',
   `bran_cd`  string COMMENT '公司代码',
@@ -92,7 +92,7 @@ STORED AS TEXTFILE;
 
 
 
-CREATE TABLE `ods_ftp`.`merchant_info_history` (
+CREATE TABLE `dw_2g`.`dwd_merchant_info_history` (
   `dt_type` string COMMENT '记录类型', -- HIVE建表
   `mcht_cd`  string COMMENT '商户编码',
   `bran_cd`  string COMMENT '公司代码',
@@ -179,7 +179,7 @@ STORED AS TEXTFILE;
 
 
 -- 第一次把种子数据放入到 merchant_info 表的初始分区(act_start=20150101)
-insert into table `ods_ftp`.`merchant_info`
+insert into table `dw_2g`.`dwd_merchant_info`
     partition (act_start=20150101)
 select
     'NEW' as `dt_type`,
@@ -246,7 +246,7 @@ select
     `us_credit_code_start_date`,
     `us_credit_code_end_date`,
     99990101 as `act_end`
-from `ods_ftp`.`merchant_info_20190122`;
+from `dw_2g`.`dwd_merchant_info_20190122`;
 
 
 
@@ -258,9 +258,9 @@ from `ods_ftp`.`merchant_info_20190122`;
 
 
 
-ALTER TABLE ods_ftp.merchant_info RENAME TO ods_ftp.temp_merchant_20180502;
+ALTER TABLE dw_2g.dwd_merchant_info RENAME TO dw_2g.tmp_merchant_20180502;
 
--- SELECT count(*) from ods_ftp.temp_merchant_20180502;
+-- SELECT count(*) from dw_2g.tmp_merchant_20180502;
 -- 7713454
 
 -- SELECT count(*) from ods_ftp.merchant_update where p_date=20180502;
@@ -270,12 +270,12 @@ ALTER TABLE ods_ftp.merchant_info RENAME TO ods_ftp.temp_merchant_20180502;
 /*
 SELECT count(*)
 from (
-    SELECT temp_merchant_20180502.*, aaa.mcht_cd as mcht_cd2
-    from ods_ftp.temp_merchant_20180502
+    SELECT tmp_merchant_20180502.*, aaa.mcht_cd as mcht_cd2
+    from dw_2g.tmp_merchant_20180502
     LEFT JOIN (
         select mcht_cd from ods_ftp.merchant_update where p_date=20180502
     ) aaa
-    on temp_merchant_20180502.mcht_cd = aaa.mcht_cd
+    on tmp_merchant_20180502.mcht_cd = aaa.mcht_cd
 ) bbb
 where mcht_cd2 is null
 */
@@ -287,18 +287,18 @@ where p_date=20180502 and ( mcht_cd = '821330159210097' or mcht_cd = '8213310546
 -- 有4条
 
 
-CREATE TABLE `ods_ftp`.`merchant_info` 。。。。。。。。。。。。。。。
+CREATE TABLE `dw_2g`.`dwd_merchant_info` 。。。。。。。。。。。。。。。
 
 
 
-TRUNCATE TABLE `ods_ftp`.`merchant_info`;
-ALTER TABLE `ods_ftp`.`merchant_info` DROP IF EXISTS PARTITION (act_start=20150101);
-ALTER TABLE `ods_ftp`.`merchant_info` DROP IF EXISTS PARTITION (act_start=20180502);
+TRUNCATE TABLE `dw_2g`.`dwd_merchant_info`;
+ALTER TABLE `dw_2g`.`dwd_merchant_info` DROP IF EXISTS PARTITION (act_start=20150101);
+ALTER TABLE `dw_2g`.`dwd_merchant_info` DROP IF EXISTS PARTITION (act_start=20180502);
 
 
 -- 在 Hive 命令行执行
 set hive.exec.dynamic.partition.mode=nonstrict;
-insert into table `ods_ftp`.`merchant_info`
+insert into table `dw_2g`.`dwd_merchant_info`
     partition (act_start)
 select
     `dt_type`,
@@ -367,12 +367,12 @@ select
     `act_end`,
     `act_start`
 from (
-    SELECT temp_merchant_20180502.*, aaa.mcht_cd as mcht_cd2
-    from ods_ftp.temp_merchant_20180502
+    SELECT tmp_merchant_20180502.*, aaa.mcht_cd as mcht_cd2
+    from dw_2g.tmp_merchant_20180502
     LEFT JOIN (
         select mcht_cd from ods_ftp.merchant_update where p_date=20180502
     ) aaa
-    on temp_merchant_20180502.mcht_cd = aaa.mcht_cd
+    on tmp_merchant_20180502.mcht_cd = aaa.mcht_cd
 ) bbb
 where mcht_cd2 is null
 union all
@@ -456,7 +456,7 @@ where ccc.num=0
 
 
 /*
--- SELECT count(*),act_start FROM `ods_ftp`.`merchant_info` GROUP BY `act_start`
+-- SELECT count(*),act_start FROM `dw_2g`.`dwd_merchant_info` GROUP BY `act_start`
 */
 /* -- 没有用窗口函数去重的结果，有4个是重复的
 -- 3162 里面有 4个重复，应该是2个
@@ -548,7 +548,7 @@ UPDATE	821331054620024	99993300	临海市乐风烘焙坊	临海市乐风烘焙�
 ----------------------------- OK 
 
 
-insert into table `ods_ftp`.`merchant_info_history`
+insert into table `dw_2g`.`dwd_merchant_info_history`
     partition (act_end=20180502)
 select
     `dt_type`,
@@ -615,11 +615,11 @@ select
     `us_credit_code_start_date`,
     `us_credit_code_end_date`,
     `act_start`
-from `ods_ftp`.`temp_merchant_20180502`
+from `dw_2g`.`tmp_merchant_20180502`
 LEFT SEMI JOIN (
-    SELECT mcht_cd from ods_ftp.merchant_update where p_date=20180502
+    SELECT mcht_cd as mcht_cd2 from ods_ftp.merchant_update where p_date=20180502
 ) aaa
-on temp_merchant_20180502.mcht_cd = aaa.mcht_cd
+on tmp_merchant_20180502.mcht_cd = aaa.mcht_cd2
 ;
 
 

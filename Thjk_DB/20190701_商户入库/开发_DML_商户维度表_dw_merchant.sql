@@ -1,6 +1,6 @@
--- CREATE TABLE `ods_ftp_opt`.`dw_merchant` (
-CREATE TABLE `ods_ftp_opt`.`dw_merchant_tmp` (
-  `t_id` int COMMENT '记录编号', -- HIVE建表
+-- CREATE TABLE `dw_2g`.`dim_merchant` (
+CREATE TABLE `dw_2g`.`dim_merchant_tmp` (
+  `merchant_id` int COMMENT '记录编号', -- HIVE建表
   `mcht_cd`  string COMMENT '商户编码',
   `corp_id`  string COMMENT '企业代码'
 )
@@ -14,14 +14,14 @@ STORED AS TEXTFILE;
 
 
 
-select mcht_cd from ods_ftp.merchant_info limit 10;
+select mcht_cd from dw_2g.dwd_merchant_info limit 10;
 
 
-insert into table `ods_ftp_opt`.`dw_merchant`
-select row_number() OVER() as t_id, mcht_cd, '100001' as `corp_id`
-from ods_ftp.merchant_info limit 1000000;
+insert into table `dw_2g`.`dim_merchant`
+select row_number() OVER() as merchant_id, mcht_cd, '100001' as `corp_id`
+from dw_2g.dwd_merchant_info limit 1000000;
 
-select * from  `ods_ftp_opt`.`dw_merchant` where t_id > 999959 or t_id < 50 order by cast(t_id as int);
+select * from  `dw_2g`.`dim_merchant` where merchant_id > 999959 or merchant_id < 50 order by cast(merchant_id as int);
 
 /*
 "$(cat <<EOF
@@ -60,30 +60,30 @@ set hive.merge.size.per.task = 256000000;
 set hive.merge.smallfiles.avgsize=16000000;
 
 
-insert into table ods_ftp_opt.dw_merchant_tmp
+insert into table dw_2g.dim_merchant_tmp
 select
-   t_id,mcht_cd,corp_id
+   merchant_id,mcht_cd,corp_id
 from
-   ods_ftp_opt.dw_merchant
+   dw_2g.dim_merchant
 union all
 select
-    cast( ( row_number() OVER() ) + ttt2.t_id_max as int ) as t_id, ttt1.mcht_cd, '100001' as corp_id
+    cast( ( row_number() OVER() ) + ttt2.max_id as int ) as merchant_id,ttt1.mcht_cd,'100001' as corp_id
 from
 (
     select
-        merchant_info.mcht_cd
+        dwd_merchant_info.mcht_cd
     from
-        ods_ftp.merchant_info
+        dw_2g.dwd_merchant_info
     left join
-        ods_ftp_opt.dw_merchant
-    on merchant_info.mcht_cd=dw_merchant.mcht_cd
-    where dw_merchant.mcht_cd is null
+        dw_2g.dim_merchant
+    on dwd_merchant_info.mcht_cd=dim_merchant.mcht_cd
+    where dim_merchant.mcht_cd is null
 ) ttt1
 left join
 (
     select
-        coalesce(max(cast(t_id as int)),0)    t_id_max
-    from ods_ftp_opt.dw_merchant
+        coalesce(max(cast(merchant_id as int)),0)    max_id
+    from dw_2g.dim_merchant
 ) ttt2
 ;
 

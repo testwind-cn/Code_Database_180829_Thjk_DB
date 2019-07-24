@@ -190,7 +190,7 @@ order by aaa.email desc
 
 
 -- 创建客户经理代码表
-CREATE TABLE IF NOT EXISTS `ods_ftp_opt`.`dim_code_manager` (
+CREATE TABLE IF NOT EXISTS `dw_2g`.`dim_code_manager` (
     `platform_code` string COMMENT '平台代码',
     `manager_code`  string COMMENT '客户经理代码',
     `cert_no`  string COMMENT '身份证',
@@ -216,9 +216,9 @@ STORED AS TEXTFILE;
 
 -- ===========================================================
 
-DROP TABLE IF EXISTS `ods_ftp_opt`.`dim_code_manager_tmp`;
+DROP TABLE IF EXISTS `dw_2g`.`tmp_dim_code_manager`;
 -- 创建客户经理临时代码表
-CREATE TABLE IF NOT EXISTS `ods_ftp_opt`.`dim_code_manager_tmp` (
+CREATE TABLE IF NOT EXISTS `dw_2g`.`tmp_dim_code_manager` (
     `platform_code` string COMMENT '平台代码',
     `manager_code`  string COMMENT '客户经理代码',
     `cert_no`  string COMMENT '身份证',
@@ -260,7 +260,7 @@ bbb as -- BEGIN:  历史客户经理融表，清洗空格和NULL
         , lower(regexp_replace(coalesce(dim_code_manager.phone,'null'),'\\s','')) phone
         , lower(regexp_replace(coalesce(dim_code_manager.email,'null'),'\\s','')) email
         , coalesce(dim_code_manager.manager_id,0) manager_id
-    from `ods_ftp_opt`.`dim_code_manager`
+    from `dw_2g`.`dim_code_manager`
 ), -- END:  历史客户经理融表，清洗空格和NULL
 eee as  -- BEGIN: 最新和历史客户经理融合
 (
@@ -437,7 +437,7 @@ ggg as -- BEGIN 最新和历史客户经理融合后，计算出可能是一个�
 ) -- END:  最新和历史客户经理融合后，计算出可能是一个人名下的多个客户经理编码
 
 
-insert into table ods_ftp_opt.dim_code_manager_tmp
+insert into table dw_2g.tmp_dim_code_manager
 select
     ggg.platform_code
     , ggg.manager_code
@@ -476,8 +476,8 @@ where
 order by f_platform_code, f_manager_code
 ;
 -- 6582     6538 + 44
-DROP TABLE IF EXISTS `ods_ftp_opt`.`dim_code_manager`;
-ALTER TABLE `ods_ftp_opt`.`dim_code_manager_tmp` RENAME TO `ods_ftp_opt`.`dim_code_manager`;
+DROP TABLE IF EXISTS `dw_2g`.`dim_code_manager`;
+ALTER TABLE `dw_2g`.`tmp_dim_code_manager` RENAME TO `dw_2g`.`dim_code_manager`;
 
 
 
@@ -492,7 +492,7 @@ ALTER TABLE `ods_ftp_opt`.`dim_code_manager_tmp` RENAME TO `ods_ftp_opt`.`dim_co
 /*
 
 -- 创建个人代码表
-CREATE TABLE IF NOT EXISTS `ods_ftp_opt`.`dim_identity_manager` (
+CREATE TABLE IF NOT EXISTS `dw_2g`.`dim_identity_manager` (
     `manager_id` int COMMENT '身份证表ID',
     `cert_no`  string COMMENT '身份证',
     `name`  string COMMENT '姓名',
@@ -508,9 +508,9 @@ WITH SERDEPROPERTIES (
 STORED AS TEXTFILE;
 
 
-DROP TABLE IF EXISTS `ods_ftp_opt`.`dim_identity_manager_tmp`;
+DROP TABLE IF EXISTS `dw_2g`.`dim_identity_manager_tmp`;
 -- 创建个人代码临时表
-CREATE TABLE IF NOT EXISTS `ods_ftp_opt`.`dim_identity_manager_tmp` (
+CREATE TABLE IF NOT EXISTS `dw_2g`.`dim_identity_manager_tmp` (
     `manager_id` int COMMENT '身份证表ID',
     `cert_no`  string COMMENT '身份证',
     `name`  string COMMENT '姓名',
@@ -533,7 +533,7 @@ left join
 (
     select
         coalesce(max(cast(manager_id as int)),0)    t_id_max
-    from ods_ftp_opt.dim_identity_manager
+    from dw_2g.dim_identity_manager
 ) ttt2
 
 */
@@ -663,7 +663,7 @@ order by ggg.s_platform_code, ccc.s_manager_code desc
 
 
 
-add jar /data/ods_ftp/MaxStrUDAF.jar;
+add jar MaxStrUDAF.jar;
 
 create temporary function maxstr as 'com.wind.hive.MaxStrUDAF';
 
@@ -726,7 +726,7 @@ fi
 
 
 
-#   'hdfs://nn1:8020/user/hive/warehouse/ods_ftp_opt.db/dim_code_manager_tmp'
+#   'hdfs://nn1:8020/user/hive/warehouse/dw_2g.db/dim_code_manager_tmp'
 # 1、找到 【  'hdfs://nn1:8020/】 只打印这行 -n p
 # 2、上面找到的内容，替换成 【/】
 # 3、把【'】 替换，这个字符串是3段叠加来的   's/'    \'    '//g'

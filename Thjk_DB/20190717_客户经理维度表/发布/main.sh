@@ -5,10 +5,10 @@ thedir="$(dirname $0)/"
 
 cd ${thedir}
 
-${thedir}drop.sh ods_ftp_opt.dim_code_manager_tmp
+${thedir}drop.sh dw_2g.dim_code_manager_tmp
 
 sudo -u admin hive -f ${thedir}main_sub_01.sql
 
-${thedir}drop.sh ods_ftp_opt.dim_code_manager
+${thedir}drop.sh dw_2g.dim_code_manager
 
-sudo -u admin hive -f  ${thedir}main_sub_02.sql
+sudo -u admin hive -f ${thedir}main_sub_02.sql
