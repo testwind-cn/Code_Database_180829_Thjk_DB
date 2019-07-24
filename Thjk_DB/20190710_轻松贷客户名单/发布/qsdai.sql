@@ -21,15 +21,15 @@ SELECT
     ,fff.zc_login_mobile                as `通联宝登录手机`
     ,fff.zc_bank_mobile_phone           as `通联宝银行手机`
 
-from ods_ftp.qsd_merchant
-LEFT JOIN ods_ftp.merchant_info
+from dm_2g.qsd_merchant
+LEFT JOIN dw_2g.dwd_merchant_info
 on qsd_merchant.merchant_ap=merchant_info.mcht_cd
-LEFT JOIN ods_ftp_opt.dw_area
+LEFT JOIN dw_2g.dim_area
 on concat(
         LPAD( merchant_info.reg_prov_cd, 2, '0'),
         LPAD( merchant_info.reg_city_cd, 2, '0'),
         LPAD( merchant_info.reg_country_cd, 2, '0')
-    ) = dw_area.area_no
+    ) = dim_area.area_no
 LEFT JOIN
 (
     SELECT inst_name,bran_cd

@@ -21,15 +21,15 @@ SELECT
     ,fff.zc_login_mobile                as `通联宝登录手机`         -- 资产登录手机
     ,fff.zc_bank_mobile_phone           as `通联宝银行手机`         -- 资产银行手机
     --  ,merchant_info.*
-from ods_ftp.qsd_merchant               -- 商户号，年龄范围，流水额度
-LEFT JOIN ods_ftp.merchant_info         -- 商户基础信息表
+from dm_2g.qsd_merchant               -- 商户号，年龄范围，流水额度
+LEFT JOIN dw_2g.dwd_merchant_info         -- 商户基础信息表
 on qsd_merchant.merchant_ap=merchant_info.mcht_cd           -- 商户号相等
-LEFT JOIN ods_ftp_opt.dw_area           -- 地区表
+LEFT JOIN dw_2g.dim_area           -- 地区表
 on concat(
         LPAD( merchant_info.reg_prov_cd, 2, '0'),
         LPAD( merchant_info.reg_city_cd, 2, '0'),
         LPAD( merchant_info.reg_country_cd, 2, '0')
-    ) = dw_area.area_no                 -- 地区编码一致
+    ) = dim_area.area_no                 -- 地区编码一致
 LEFT JOIN
 (                               -- 机构名称表
     SELECT inst_name,bran_cd            -- 机构名称，机构编号

@@ -5,11 +5,11 @@ thedir="$(dirname $0)/"
 
 cd ${thedir}
 
-${thedir}drop.sh ods_ftp.qsd_merchant_temp
+${thedir}drop.sh dm_2g.qsd_merchant_temp
 
 sudo -u admin hive -f ${thedir}main_sub_01.sql
 
-${thedir}drop.sh ods_ftp_opt.qsd_merchant
+${thedir}drop.sh dm_2g.qsd_merchant
 
 sudo -u admin hive -f ${thedir}main_sub_02.sql
 
