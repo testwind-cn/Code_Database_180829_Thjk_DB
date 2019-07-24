@@ -21,9 +21,9 @@ set hive.merge.smallfiles.avgsize=16000000;
 
 
 -- -------------------------------
-drop table if exists `ods_ftp`.`temp_merchant_${THE_DATE}`;
+drop table if exists `dw_2g`.`tmp_merchant_${THE_DATE}`;
 
-CREATE TABLE `ods_ftp`.`temp_merchant_${THE_DATE}` (
+CREATE TABLE `dw_2g`.`tmp_merchant_${THE_DATE}` (
   `dt_type` string COMMENT '记录类型', -- HIVE建表
   `mcht_cd`  string COMMENT '商户编码',
   `bran_cd`  string COMMENT '公司代码',
@@ -107,7 +107,7 @@ WITH SERDEPROPERTIES (
 STORED AS TEXTFILE;
 
 
-insert into table `ods_ftp`.`temp_merchant_${THE_DATE}`
+insert into table `dw_2g`.`tmp_merchant_${THE_DATE}`
     partition (act_start)
 select
     `dt_type`,
@@ -176,12 +176,12 @@ select
     `act_end`,
     `act_start`
 from (
-    SELECT merchant_info.*, aaa.mcht_cd as mcht_cd2
-    from ods_ftp.merchant_info
+    SELECT dwd_merchant_info.*, aaa.mcht_cd as mcht_cd2
+    from dw_2g.dwd_merchant_info
     LEFT JOIN (
         select mcht_cd from ods_ftp.merchant_update where p_date=${THE_DATE}
     ) aaa
-    on merchant_info.mcht_cd = aaa.mcht_cd
+    on dwd_merchant_info.mcht_cd = aaa.mcht_cd
 ) bbb
 where mcht_cd2 is null
 union all
@@ -263,7 +263,7 @@ where ccc.num=0
 ;
 
 
-insert into table `ods_ftp`.`merchant_info_history`
+insert into table `dw_2g`.`dwd_merchant_info_history`
     partition (act_end=${THE_DATE})
 select
     `dt_type`,
@@ -330,13 +330,13 @@ select
     `us_credit_code_start_date`,
     `us_credit_code_end_date`,
     `act_start`
-from `ods_ftp`.`merchant_info`
+from `dw_2g`.`dwd_merchant_info`
 LEFT SEMI JOIN (
     SELECT mcht_cd from ods_ftp.merchant_update where p_date=${THE_DATE}
 ) aaa
-on merchant_info.mcht_cd = aaa.mcht_cd
+on dwd_merchant_info.mcht_cd = aaa.mcht_cd
 ;
 
-drop table if exists ods_ftp.merchant_info;
+drop table if exists dw_2g.dwd_merchant_info;
 
-ALTER TABLE ods_ftp.temp_merchant_${THE_DATE} RENAME TO ods_ftp.merchant_info;
+ALTER TABLE dw_2g.tmp_merchant_${THE_DATE} RENAME TO dw_2g.dwd_merchant_info;

@@ -1,8 +1,8 @@
-drop table if exists `ods_ftp`.`merchant_info`;
+drop table if exists `dw_2g`.`dwd_merchant_info`;
 
-drop table if exists `ods_ftp`.`merchant_info_history`;
+drop table if exists `dw_2g`.`dwd_merchant_info_history`;
 
-CREATE TABLE `ods_ftp`.`merchant_info` (
+CREATE TABLE `dw_2g`.`dwd_merchant_info` (
   `dt_type` string COMMENT '记录类型', -- HIVE建表
   `mcht_cd`  string COMMENT '商户编码',
   `bran_cd`  string COMMENT '公司代码',
@@ -91,7 +91,7 @@ STORED AS TEXTFILE;
 
 
 
-CREATE TABLE `ods_ftp`.`merchant_info_history` (
+CREATE TABLE `dw_2g`.`dwd_merchant_info_history` (
   `dt_type` string COMMENT '记录类型', -- HIVE建表
   `mcht_cd`  string COMMENT '商户编码',
   `bran_cd`  string COMMENT '公司代码',
@@ -177,8 +177,8 @@ STORED AS TEXTFILE;
 
 
 
--- 第一次把种子数据放入到 merchant_info 表的初始分区(act_start=20150101)
-insert into table `ods_ftp`.`merchant_info`
+-- 第一次把种子数据放入到 dwd_merchant_info 表的初始分区(act_start=20150101)
+insert into table `dw_2g`.`dwd_merchant_info`
     partition (act_start=20150101)
 select
     'NEW' as `dt_type`,
@@ -245,5 +245,5 @@ select
     `us_credit_code_start_date`,
     `us_credit_code_end_date`,
     99990101 as `act_end`
-from `ods_ftp`.`merchant_info_20190122`;
+from `dw_2g`.`dwd_merchant_info_20190122`;
 
