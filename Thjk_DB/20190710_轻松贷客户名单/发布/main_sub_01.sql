@@ -4,8 +4,8 @@ set hive.merge.mapredfiles = true;
 set hive.merge.size.per.task = 256000000;
 set hive.merge.smallfiles.avgsize=16000000;
 
-drop table if exists `dm_2g`.`tmp_qsd_merchant`;
-CREATE TABLE `dm_2g`.`tmp_qsd_merchant` (
+drop table if exists `dm_2g`.`tmp_dm_qsd_merchant`;
+CREATE TABLE `dm_2g`.`tmp_dm_qsd_merchant` (
   `flow_amt_1M_1` string COMMENT '',
   `flow_amt_1M_2`  string COMMENT '',
   `flow_amt_6M_1`  string COMMENT '',
@@ -25,7 +25,7 @@ STORED AS TEXTFILE;
 
 
 
-insert into table `dm_2g`.`tmp_qsd_merchant`
+insert into table `dm_2g`.`tmp_dm_qsd_merchant`
 select
     `flow_amt_1M_1`,
     `flow_amt_1M_2`,
