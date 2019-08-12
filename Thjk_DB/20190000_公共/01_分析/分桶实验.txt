@@ -1,0 +1,98 @@
+SELECT INPUT__FILE__NAME, * from dw_2g.tmp_dwd_merchant_info  where mcht_cd in ('821141050650151',
+'821150152110227',
+'821610859980431',
+'821130472210019');
+
+
+
+
+hdfs://nn1:8020/user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000000_0	UPDATE	821141050650151	99991600	临汾市尧都区康华欣电器有限公司	临汾市尧都区康华欣电器有限公司	48211600	141002000033283	5065	0	99991600	14	10	01	大众路	李花娥	03572598378					0	2015-07-28		2	0	张岳					李花娥	01_身份证	142601197005182346	0_日结	0	0	2_个体户	01				无	00000000000	14100255657216X	0	是	0	01	否	否	200014100002896	0	50	批发零售电器	批发零售家用电器五金交电	2015-06-09	01	01	5065					99990101	20180502
+hdfs://nn1:8020/user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000000_0	UPDATE	821150152110227	99991900	武川县豪威陶瓷建材店	呼市武川县豪威陶瓷建材店	48211900	92150125MA0NHHUB80	5211	0	99991900	15	01	25	武川县可镇步行街A段路西门脸房	刘国栋	15947710736					0	2018-05-02		2	2	李增慧邮政 					刘国栋	01_身份证	15022319730715091X	0_日结	0	0	0_国有	01							0	是	0	01	否	否	200015010286553	0	0	陶瓷	陶瓷	2034-08-01	01	01	5211	N				99990101	20180502
+hdfs://nn1:8020/user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000019_0	UPDATE	821610859980431	99997900	府谷县酒水批发部	府谷县酒水批发部	48217900	612723620065845	5998	0	99997900	61	08	22	氮肥厂前大门	李瑞生	09128810557					0	2015-09-09		2	2	李琨					李瑞生	01_身份证	612723198306022419	0_日结	0	0	2_个体户	01				无	00000000000		0	是	0	01	否	否	200061080002434	0	0	预包装食品批发	烟预包装食品乳制品	2099-12-31	01	01	5998					99990101	20180502
+hdfs://nn1:8020/user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000019_0	UPDATE	821130472210019	99991200	临漳县西门南大街爱贝儿儿童摄影门市	河北省邯郸市临漳县西门南大爱贝儿儿童摄影	48211200	130423603045190	7221	0	99991200	13	04	23	西门南大街	徐世和	13463405399					0	2015-10-16		2	0	胡磊					徐世和	01_身份证	130423199002124514	0_日结	0	0	2_个体户	01				无	00000000000		0	是	0	01	否	否	200013040216048	0	0	照像 摄影 服务	照像 摄影 服务	2099-12-31	01	01	7221	N				99990101	20180502
+
+
+
+
+SELECT INPUT__FILE__NAME, * from dw_2g.dwd_merchant_info_history  where mcht_cd in ('821141050650151',
+'821150152110227',
+'821610859980431',
+'821130472210019');
+
+
+hdfs://nn1:8020/user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000000_0	NEW	821141050650151	99991600	临汾市尧都区康华欣电器有限公司	临汾市尧都区康华欣电器有限公司	48211600	141002000033283	5065	0	99991600	14	10	01	大众路	李花娥	03572598378					0	2015-07-28		2	0	张岳					李花娥	01_身份证	142601197005182346	0_日结	0	0	2_个体户	01				无	00000000000	14100255657216X	0	是	0	01	否	否	200014100002896	0	50	批发零售电器	批发零售家用电器五金交电	2015-06-09	01	01	5065	 				20150101	20180502
+hdfs://nn1:8020/user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000000_0	NEW	821150152110227	99991900	呼市武川县豪威陶瓷建材店	武川县豪威陶瓷建材店	48211900	92150125MA0NHHUB80	5211	0	99991900	15	01	25	武川县可镇步行街A段路西门脸房	刘国栋	15947710736					0	2018-05-02		2	2	李增慧邮政					刘国栋	01_身份证	15022319730715091X	0_日结	0	0	0_国有	01							0	是	0	01	否	否	200015010286553	0	0	陶瓷	陶瓷	2034-08-01	01	01	5211	N				20150101	20180502
+hdfs://nn1:8020/user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000019_0	NEW	821130472210019	99991200	河北省邯郸市临漳县西门南大爱贝儿儿童摄影	临漳县西门南大街爱贝儿儿童摄影门市	48211200	130423603045190	7221	0	99991200	13	04	23	西门南大街	徐世和	13463405399					0	2015-10-16		2	0	袁晓男					徐世和	01_身份证	130423199002124514	0_日结	0	0	2_个体户	01				无	00000000000		0	是	0	01	否	否	200013040216048	0	0	照像 摄影 服务	照像 摄影 服务	2099-12-31	01	01	7221	N				20150101	20180502
+hdfs://nn1:8020/user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000019_0	NEW	821610859980431	99997900	府谷县酒水批发部	府谷县酒水批发部	48217900	612723620065845	5998	0	99997900	61	08	22	氮肥厂前大门	李瑞生	09128810557					0	2015-09-09		2	2	徐辉兵					李瑞生	01_身份证	612723198306022419	0_日结	0	0	2_个体户	01				无	00000000000		0	是	0	01	否	否	200061080002434	0	0	预包装食品批发	烟预包装食品乳制品	2055-12-31	01	01	5998	 				20150101	20180502
+
+
+
+
+dfs -ls -h /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502;
+-rwxrwxrwt   3 admin hive    105.5 K 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000000_0
+-rwxrwxrwt   3 admin hive     82.9 K 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000001_0
+-rwxrwxrwt   3 admin hive     91.3 K 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000002_0
+-rwxrwxrwt   3 admin hive     84.8 K 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000003_0
+-rwxrwxrwt   3 admin hive     96.6 K 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000004_0
+-rwxrwxrwt   3 admin hive     87.2 K 2019-07-26 10:19 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000005_0
+-rwxrwxrwt   3 admin hive     89.3 K 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000006_0
+-rwxrwxrwt   3 admin hive     89.3 K 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000007_0
+-rwxrwxrwt   3 admin hive    100.8 K 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000008_0
+-rwxrwxrwt   3 admin hive     96.9 K 2019-07-26 10:19 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000009_0
+-rwxrwxrwt   3 admin hive     88.5 K 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000010_0
+-rwxrwxrwt   3 admin hive     83.9 K 2019-07-26 10:19 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000011_0
+-rwxrwxrwt   3 admin hive     87.0 K 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000012_0
+-rwxrwxrwt   3 admin hive     96.3 K 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000013_0
+-rwxrwxrwt   3 admin hive     97.8 K 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000014_0
+-rwxrwxrwt   3 admin hive     99.2 K 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000015_0
+-rwxrwxrwt   3 admin hive     93.0 K 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000016_0
+-rwxrwxrwt   3 admin hive     86.5 K 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000017_0
+-rwxrwxrwt   3 admin hive     90.7 K 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000018_0
+-rwxrwxrwt   3 admin hive     97.4 K 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20180502/000019_0
+
+
+dfs -ls -h /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502;
+-rwxrwxrwt   3 admin hive    105.4 K 2019-07-26 10:28 /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000000_0
+-rwxrwxrwt   3 admin hive     82.9 K 2019-07-26 10:28 /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000001_0
+-rwxrwxrwt   3 admin hive     91.5 K 2019-07-26 10:28 /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000002_0
+-rwxrwxrwt   3 admin hive     84.8 K 2019-07-26 10:28 /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000003_0
+-rwxrwxrwt   3 admin hive     96.5 K 2019-07-26 10:28 /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000004_0
+-rwxrwxrwt   3 admin hive     87.4 K 2019-07-26 10:28 /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000005_0
+-rwxrwxrwt   3 admin hive     89.2 K 2019-07-26 10:28 /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000006_0
+-rwxrwxrwt   3 admin hive     89.2 K 2019-07-26 10:28 /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000007_0
+-rwxrwxrwt   3 admin hive    100.8 K 2019-07-26 10:28 /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000008_0
+-rwxrwxrwt   3 admin hive     96.9 K 2019-07-26 10:28 /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000009_0
+-rwxrwxrwt   3 admin hive     88.7 K 2019-07-26 10:28 /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000010_0
+-rwxrwxrwt   3 admin hive     84.0 K 2019-07-26 10:28 /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000011_0
+-rwxrwxrwt   3 admin hive     87.0 K 2019-07-26 10:28 /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000012_0
+-rwxrwxrwt   3 admin hive     96.2 K 2019-07-26 10:28 /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000013_0
+-rwxrwxrwt   3 admin hive     97.9 K 2019-07-26 10:28 /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000014_0
+-rwxrwxrwt   3 admin hive     99.0 K 2019-07-26 10:28 /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000015_0
+-rwxrwxrwt   3 admin hive     92.9 K 2019-07-26 10:28 /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000016_0
+-rwxrwxrwt   3 admin hive     86.4 K 2019-07-26 10:28 /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000017_0
+-rwxrwxrwt   3 admin hive     90.7 K 2019-07-26 10:28 /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000018_0
+-rwxrwxrwt   3 admin hive     97.5 K 2019-07-26 10:28 /user/hive/warehouse/dw_2g.db/dwd_merchant_info_history/act_end=20180502/000019_0
+
+
+
+dfs -ls -h /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101;
+-rwxrwxrwt   3 admin hive    178.9 M 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101/000000_0
+-rwxrwxrwt   3 admin hive    179.1 M 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101/000001_0
+-rwxrwxrwt   3 admin hive    179.6 M 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101/000002_0
+-rwxrwxrwt   3 admin hive    179.2 M 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101/000003_0
+-rwxrwxrwt   3 admin hive    178.6 M 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101/000004_0
+-rwxrwxrwt   3 admin hive    179.4 M 2019-07-26 10:19 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101/000005_0
+-rwxrwxrwt   3 admin hive    179.3 M 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101/000006_0
+-rwxrwxrwt   3 admin hive    178.8 M 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101/000007_0
+-rwxrwxrwt   3 admin hive    179.0 M 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101/000008_0
+-rwxrwxrwt   3 admin hive    179.0 M 2019-07-26 10:19 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101/000009_0
+-rwxrwxrwt   3 admin hive    179.2 M 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101/000010_0
+-rwxrwxrwt   3 admin hive    179.6 M 2019-07-26 10:19 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101/000011_0
+-rwxrwxrwt   3 admin hive    178.7 M 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101/000012_0
+-rwxrwxrwt   3 admin hive    179.2 M 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101/000013_0
+-rwxrwxrwt   3 admin hive    178.9 M 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101/000014_0
+-rwxrwxrwt   3 admin hive    179.0 M 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101/000015_0
+-rwxrwxrwt   3 admin hive    178.8 M 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101/000016_0
+-rwxrwxrwt   3 admin hive    179.0 M 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101/000017_0
+-rwxrwxrwt   3 admin hive    179.2 M 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101/000018_0
+-rwxrwxrwt   3 admin hive    179.0 M 2019-07-26 10:18 /user/hive/warehouse/dw_2g.db/tmp_dwd_merchant_info/act_start=20150101/000019_0

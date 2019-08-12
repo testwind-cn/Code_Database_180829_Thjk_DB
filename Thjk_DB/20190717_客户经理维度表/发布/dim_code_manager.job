@@ -1,3 +1,0 @@
-type=command
-
-command=ssh 10.91.1.100 "/submit/shells/dim_code_manager/main.sh"
