@@ -17,6 +17,10 @@ workspace.xml
 markdown-navigator/
 markdown*.xml
 
+*/.idea/markdown*/*.*
+markdown-navigator/profiles_settings.xml
+
+
 
 data_tmp/
 # 下载文件的位置
