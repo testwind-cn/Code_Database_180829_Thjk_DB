@@ -1,13 +1,14 @@
 #!/bin/bash
 # 在100上运行 main_dml_00.sql  初始化数据库，循环执行 main.sh ，从20180502 到当前日期
 
-thedir="$(dirname $0)/"
+THEDIR="$(dirname $0)/"
 THE_DATE=$(date "+%Y%m%d")
+TABLE_S=dim.dim_merchant_info
 
-cd ${thedir}
+cd ${THEDIR}
 
-
-sudo -u admin hive --hivevar THE_TABLE=dim.dim_merchant_info -e "$(cat main_ddl_00.sql ; cat main_ddl_01.sql ; cat main_dml_00.sql)"
+# 考虑好是否要初始化数据库！！
+# sudo -u admin hive --hivevar THE_TABLE=${TABLE_S} -e "$(cat main_ddl_00.sql ; cat main_ddl_01.sql ; cat main_dml_00.sql)"
 
 
 DATE_S=$(date -d "20180423 -1 day" "+%Y%m%d")

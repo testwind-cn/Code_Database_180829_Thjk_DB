@@ -1,5 +1,7 @@
 -- 正则替换掉注释      (?:^|[ ]+)(?:#|--) +[^\n]*
 
+-- use 语句 和  insert , select 语句尾部不能加分号。 set 语句可以加分号
+
 sftp://root@10.91.1.100/submit/shells/qsdai/
     drop.sh
     main.sh

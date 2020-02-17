@@ -1,22 +1,29 @@
--- 1、当前表，不分区，只分桶，dim_merchant_info
--- 2、历史表，只分区，不分桶，dim_merchant_info_history
 
 
--- drop table if exists dim.dim_merchant_info;
 
 
--- drop table if exists dim.dim_merchant_info_history;
 
 
-CREATE TABLE if not exists dim.dim_merchant_info_history (
+
+
+
+
+
+
+
+drop table if exists ${hivevar:THE_TABLE};
+
+
+CREATE TABLE if not exists ${hivevar:THE_TABLE} (
     merchant_id int COMMENT '商户唯一编号',
-    corp_id int COMMENT '厂家编号', -- 10001 通联，10002 收银宝
     act_start int COMMENT '生效开始日期',
-    dt_type string COMMENT '记录类型', -- HIVE建表
+    act_end int COMMENT '生效结束日期',
+
+    dt_type string COMMENT '记录类型',
     mcht_cd  string COMMENT '商户编码',
     bran_cd  string COMMENT '公司代码',
-    mcht_name  string COMMENT '商户名称',  -- 通金导库文件里错写成：商户营业名称*
-    mcht_business_name  string COMMENT '商户营业名称',  -- 通金导库文件里错写成：商户名称
+    mcht_name  string COMMENT '商户名称',
+    mcht_business_name  string COMMENT '商户营业名称',
     mcht_org_cd  string COMMENT '商户收单机构代码',
     mcht_business_license  string COMMENT '营业执照号码',
     mcht_type  string COMMENT '商户类型',
@@ -85,12 +92,12 @@ CREATE TABLE if not exists dim.dim_merchant_info_history (
     us_credit_code_start_date  string COMMENT '[         ]',
     us_credit_code_end_date  string COMMENT '[         ]'
 )
-PARTITIONED BY ( act_end INT COMMENT '生效结束日期分区' )
--- CLUSTERED BY (mcht_cd) INTO 20 BUCKETS
-ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
-WITH SERDEPROPERTIES (
-    "separatorChar" = ",",
-    "quoteChar" = "\"",
-    "escapeChar" = "\\"
-)
-STORED AS TEXTFILE;
+
+PARTITIONED BY ( corp_id INT COMMENT '厂家编号')
+CLUSTERED BY (mcht_cd) SORTED BY (merchant_id) INTO 20 BUCKETS
+ROW FORMAT DELIMITED FIELDS TERMINATED BY "\t"
+
+STORED AS ORC
+TBLPROPERTIES (
+    "orc.compress"="ZLIB"
+);

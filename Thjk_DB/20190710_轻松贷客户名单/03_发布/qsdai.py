@@ -29,13 +29,13 @@ def run_hive(conf: ConfigData, the_date: str):
         f_file = open(fname+".ini", 'r', encoding="utf-8")  # 返回一个文件对象
         line = f_file.readline()
         while len(line) > 0:
-            line = f_file.readline()
             if len(line) > 5:
                 print("Run: " + "  " + line + "\n")
                 cur.execute(line)  # , async=True)
                 print("OK: " + "  " + line + "\n")
             else:
                 print("Pass: " + "  " + line + "\n")
+            line = f_file.readline()
         f_file.close()
 
     sql = ""
@@ -43,8 +43,8 @@ def run_hive(conf: ConfigData, the_date: str):
         f_file = open(fname + ".sql", 'r', encoding="utf-8")  # 返回一个文件对象
         line = f_file.readline()
         while len(line) > 0:
-            line = f_file.readline()
             sql += line
+            line = f_file.readline()
         f_file.close()
 
     if len(sql) > 10:

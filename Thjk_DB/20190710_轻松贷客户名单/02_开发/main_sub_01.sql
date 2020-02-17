@@ -81,7 +81,7 @@ left semi join
         and
         datediff( from_unixtime( unix_timestamp( substr(regexp_extract( merchant_zc.legal_iden_no, '[^\\d]*([^\\s]*)',1 ),7,8) ,'yyyyMMdd') , 'yyyy-MM-dd' ), date_sub(current_date(),20088 ) ) >=0
             -- 3、不在禁入行业
-        and up_mcc_cd not in (
+        and merchant_zc.up_mcc_cd not in (
             3998,4011,4111,4112,4119,4121,4131,4411,4457,4468,
             4511,4582,4899,4900,7297,7298,7911,8651,8661,9211,
             9222,9223,9311,9399,9400,9402
