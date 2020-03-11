@@ -1,4 +1,4 @@
-﻿# wangjun add
+# wangjun add
 
 .idea/dataSources/
 .idea/dictionaries/
@@ -14,6 +14,20 @@ __pycache__/
 .idea/markdown-exported-files.xml
 
 .idea/workspace.xml
+
+# 临时文件
+note_tmp/
+data_tmp/
+data_tmp_out/
+# 临时文件
+
+# navicat 数据库文件
+id_cache.*
+Premium/profiles/AutoSave/
+Premium/logs/
+Navicat/Premium/profiles/AutoSave/
+Navicat/Premium/logs/
+# navicat 数据库文件
 
 # wangjun add
 
