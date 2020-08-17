@@ -1,2 +1,47 @@
 # Datasource local storage ignored files
 /dataSources/
+# Default ignored files
+/workspace.xml
+
+
+
+
+# wangjun add
+
+# 项目文件
+**/.idea/
+**/.settings/
+
+# 编译文件
+**/build/
+**/bin/
+**/target/
+**/build/
+**/out/
+**/bin/
+**/deployments/
+# 编译文件
+
+
+# Python 文件
+**/venv/
+**/__pycache__/
+# Python 文件
+
+# 临时文件
+**/markdown-navigator/
+**/note_tmp/
+**/data_tmp/
+**/data_tmp_out/
+# 临时文件
+
+# navicat 数据库文件
+**/id_cache.db*
+**/Premium/profiles/AutoSave/
+**/Premium/logs/
+Navicat/Premium/profiles/AutoSave/
+Navicat/Premium/logs/
+# navicat 数据库文件
+
+# wangjun add
+
